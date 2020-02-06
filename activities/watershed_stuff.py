@@ -29,7 +29,7 @@ import grass.script as gs
 def run_hydro(scanned_elev, env, **kwargs):
     gs.run_command('r.watershed', elevation=scanned_elev, accumulation='flow_accum',
                    basin='watersheds', threshold=1000, flags='a', env=env)
-    gs.run_command('r.to.vect', input='watersheds', output='watersheds', type='area')
+    gs.run_command('r.to.vect', input='watersheds', output='watersheds', type='area', env=env)
 
 def run_watershed_slope(scanned_elev, env, **kwargs):
     gs.run_command('r.watershed', elevation=scanned_elev, accumulation='flow_accum',
