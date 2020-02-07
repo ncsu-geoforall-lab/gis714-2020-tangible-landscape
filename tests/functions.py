@@ -49,6 +49,19 @@ class TestFunctionsInFiles(unittest.TestCase):
             self.assertEqual(
                 return_code, 0, msg=("Running {filename} failed".format(**locals())),
             )
+            return_code = subprocess.call(
+                [self.executable, self.mapset_path, "--exec", self.python, full_path]
+            )
+            self.assertEqual(
+                return_code,
+                0,
+                msg=(
+                    "Running {filename} the second time failed"
+                    ' (maybe missing env=env or env["GRASS_OVERWRITE"] = "1"'.format(
+                        **locals()
+                    )
+                ),
+            )
 
 
 if __name__ == "__main__":
