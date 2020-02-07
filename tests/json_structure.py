@@ -159,9 +159,6 @@ class TestContentOfJsonFiles(unittest.TestCase):
     def test_python_file_in_json(self):
         """Check that all Python files are referenced by a JSON config file"""
         for python_filename, python_full_path in get_all_python_files(self.path):
-            # skip for the already contributed file (to be fixed and removed)
-            if python_filename == "least_path.py":
-                continue
             file_mentioned = False
             for json_filename, json_full_path in get_all_json_files(self.path):
                 with open(json_full_path) as file_handle:
