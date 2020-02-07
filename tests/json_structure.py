@@ -185,9 +185,6 @@ class TestContentOfJsonFiles(unittest.TestCase):
             # assuming we have exactly one task in the template
             template_task = json.load(file_handle)["tasks"][0]
         for filename, full_path in get_all_json_files(self.path):
-            # skip for the already contributed file (to be fixed and removed)
-            if filename == "config_template_thom.json":
-                continue
             # do not check the template itself and main config
             if filename in (self.config_template_name, self.main_config_file):
                 continue
