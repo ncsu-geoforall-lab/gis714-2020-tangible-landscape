@@ -45,24 +45,26 @@ def run_function_with_points(scanned_elev, env, points=None, **kwargs):
 def main():
     import os
 
+    # get the current environment variables as a copy
+    env = os.environ.copy()
     # we want to run this repetetively without deleted the created files
-    os.environ['GRASS_OVERWRITE'] = '1'
+    env['GRASS_OVERWRITE'] = '1'
 
     elevation = 'elev_lid792_1m'
     elev_resampled = 'elev_resampled'
     # resampling to have similar resolution as with TL
-    gs.run_command('g.region', raster=elevation, res=4, flags='a')
-    gs.run_command('r.resamp.stats', input=elevation, output=elev_resampled)
+    gs.run_command('g.region', raster=elevation, res=4, flags='a', env=env)
+    gs.run_command('r.resamp.stats', input=elevation, output=elev_resampled, env=env)
 
     # this will run all 3 examples (slope, contours, points)
-    run_slope(scanned_elev=elev_resampled, env=None)
-    run_contours(scanned_elev=elev_resampled, env=None)
+    run_slope(scanned_elev=elev_resampled, env=env)
+    run_contours(scanned_elev=elev_resampled, env=env)
 
     # create points
     points = 'points'
     gs.write_command('v.in.ascii', flags='t', input='-', output=points, separator='comma',
-                     stdin='638432,220382\n638621,220607')
-    run_function_with_points(scanned_elev=elev_resampled, env=None, points=points)
+                     stdin='638432,220382\n638621,220607', env=env)
+    run_function_with_points(scanned_elev=elev_resampled, env=env, points=points)
 
 
 if __name__ == '__main__':
