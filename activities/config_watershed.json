@@ -3,7 +3,7 @@
       {
       "layers": [
         [
-          "d.rast", "map=watershed_slope"
+          "d.rast", "map=watersheds_slope"
         ],
         [
           "d.vect", "map=watersheds", "color=77:77:77", "width=2", "fill_color=none"
