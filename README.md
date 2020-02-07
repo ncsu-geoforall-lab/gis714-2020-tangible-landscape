@@ -32,7 +32,7 @@ To be able to create pull request, you will need to set up a fork and a local re
 
 ### Configure an activity
 
-1. Create a new Python script according to the template
+1. Create a new configuration file according to the template
    * There is a template called `config_template.json` in the `activities` directory
      which provides an example of a minimalistic activity configuration.
    * Again, use a unique filename.
@@ -64,7 +64,9 @@ Record the changes:
 git commit -am "Add awesome activity"
 ```
 
-Publish the changes into your fork (`origin` is how Git referes to the remote repository you cloned from):
+Publish the changes into your fork
+(`origin` is how Git referes to the remote repository you cloned from,
+`add-awesome-activity` is the name of the branch we have picked earlier):
 
 ```
 git push origin add-awesome-activity
@@ -110,9 +112,9 @@ git push
 ### Make and publish chnages
 
 Now when your local master branch is up to date with the master branch of the main repository,
-you can just follow the instructions for creating a new activity, i.e., you need to:
+you can just follow the instructions above for creating a new activity, in short, you need to:
 
-1. create a new branch,
+1. create a new branch (you can do it also after you make the changes),
 1. make changes,
 1. make commits,
 1. publish (push) the changes online, and
