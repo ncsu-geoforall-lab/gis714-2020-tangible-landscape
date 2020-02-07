@@ -46,6 +46,7 @@ class TestContentOfJsonFiles(unittest.TestCase):
 
     path = "activities/"
     config_template_name = "config_template.json"
+    main_config_file = "config.json"
 
     def test_files_have_expected_content(self):
         """Check that files contain required pieces"""
@@ -187,8 +188,8 @@ class TestContentOfJsonFiles(unittest.TestCase):
             # skip for the already contributed file (to be fixed and removed)
             if filename == "config_template_thom.json":
                 continue
-            # do not check the template itself
-            if filename == self.config_template_name:
+            # do not check the template itself and main config
+            if filename in (self.config_template_name, self.main_config_file):
                 continue
             with open(full_path) as file_handle:
                 content = json.load(file_handle)
