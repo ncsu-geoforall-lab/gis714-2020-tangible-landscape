@@ -23,12 +23,13 @@ import grass.script as gs
 def run_slope(scanned_elev, env, **kwargs):
     gs.run_command('r.slope.aspect', elevation=scanned_elev, slope='slope', env=env)
 
+#fun comment
 
 def run_contours(scanned_elev, env, **kwargs):
     interval = 5
     gs.run_command('r.contour', input=scanned_elev, output='contours', step=interval, flags='t', env=env)
 
-def LCP(scanned_elev, env, points=None, **kwargs):
+def run_LCP(scanned_elev, env, points=None, **kwargs):
     if not points:
         points = 'points'
         import analyses
@@ -84,16 +85,8 @@ def main():
     points = 'points'
     gs.write_command('v.in.ascii', flags='t', input='-', output=points, separator='comma',
                      stdin='638432,220382\n638621,220607')
-    print("Hello!")
-    LCP(scanned_elev=elev_resampled, env=None, points=points)
-
-
-    # create points
-    points = 'points'
-    gs.write_command('v.in.ascii', flags='t', input='-', output=points, separator='comma',
-                     stdin='638432,220382\n638621,220607')
     print("Hiya!")
-    LCP(scanned_elev=elev_resampled, env=None, points=points)
+    run_LCP(scanned_elev=elev_resampled, env=None, points=points)
 
 
 
