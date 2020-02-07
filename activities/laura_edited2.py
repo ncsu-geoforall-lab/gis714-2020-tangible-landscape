@@ -26,10 +26,19 @@ def run_contours(scanned_elev, env, **kwargs):
     interval = 5
     gs.run_command('r.contour', input=scanned_elev, output='contours', step=interval, flags='t', env=env)
 	
-def run_lake(scanned_elev, env, **kwargs):
-    coordinates = [638830, 220150]
-    gs.run_command('r.lake', elevation=scanned_elev, lake='output_lake',
-                   coordinates=coordinates, water_level=120, env=env)
+
+def run_ponds(scanned_elev, env, **kwargs):
+    repeat = 2
+    input_dem = scanned_elev
+    output = "tmp_filldir"
+    for i in range(repeat):
+        gs.run_command('r.fill.dir', input=input_dem, output=output, direction="tmp_dir", env=env)
+        input_dem = output
+    # filter depression deeper than 0.1 m to
+    gs.mapcalc('{new} = if({out} - {scan} > 0.1, {out} - {scan}, null())'.format(new='ponds', out=output,
+                                                                                 scan=scanned_elev), env=env)
+    gs.write_command('r.colors', map='ponds', rules='-', stdin='0% aqua\n100% blue', env=env)
+
 
 def run_function_with_points(scanned_elev, env, points=None, **kwargs):
     if not points:
@@ -62,7 +71,9 @@ def main():
     # this will run all 3 examples (slope, contours, points)
     run_slope(scanned_elev=elev_resampled, env=None)
     run_contours(scanned_elev=elev_resampled, env=None)
-    run_lake(scanned_elev=elev_resampled, env=None)
+
+    run_ponds(scanned_elev=elev_resampled, env=None)
+
 
     # create points
     points = 'points'

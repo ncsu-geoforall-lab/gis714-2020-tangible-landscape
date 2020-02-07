@@ -6,7 +6,7 @@
           "d.rast", "map=slope"
         ],
 		[
-		  "d.rast", "map=output_lake"
+		  "d.rast", "map=tmp_filldir"
 		],
         [
           "d.vect", "map=contours", "color=77:77:77", "width=2"
