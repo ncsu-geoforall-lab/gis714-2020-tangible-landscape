@@ -40,6 +40,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Test newlines
+      run: |
+        python3 ./tests/newlines.py
     - name: Test content structure of Python files
       run: |
         python3 ./tests/functions_format.py
