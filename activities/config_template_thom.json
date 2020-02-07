@@ -3,7 +3,7 @@
       {
       "layers": [
         [
-          "d.rast", "map=hillshade"
+          "d.rast", "map=hillshadeThom"
         ]
        
       ],

@@ -44,7 +44,7 @@ def run_function_with_points(scanned_elev, env, points=None, **kwargs):
 
 def run_relief(scanned_elev, env, **kwargs ):
 
-    gs.run_command('r.relief', input = scanned_elev, output = 'hillshade' )
+    gs.run_command('r.relief', input = scanned_elev, output = 'hillshadeThom' , env = env)
 
 
 # this part is for testing without TL
